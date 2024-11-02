@@ -37,6 +37,11 @@ export default function Log(app: WineHorn): (req: Request, res: Response, next: 
 		fs.mkdirSync(path.join("./log", "response"));
 	}
 
+	if (!fs.existsSync(path.join("./log", "system.log"))) {
+		fs.writeFileSync(path.join("./log", "system.log"), "");
+	}
+
+	let sl: Lopster = new Lopster(path.join("./log", "system.log"));
 
 	function colorize(request: string[]): string {
 		return qp.gb(request[0]) + qp.yi(request[1]) + qp.yb(request[2])
