@@ -34,6 +34,10 @@ class Path implements PathProto {
 			return Validator(this.validator, query);
 		} else return true;
 	}
+
+	public alias(...path: string[]): Path[] {
+		return path.map(p => new Path(this.method, p, this.handler, this.validator));
+	}
 }
 
 export default Path;

@@ -2,14 +2,17 @@ import express from "express";
 import qp from "qp-color";
 import Path, {PathProto, RequestTypesLowerCase} from "./Path.js";
 import Log from "./Log.js";
+import Config from "./Config.js";
 
 class WineHorn {
 	public port: number = 3000;
+	public config: Config = {};
 	private paths: Path[] = [];
 
-	constructor(port?: number, paths?: Path[]) {
+	constructor(port?: number, paths?: Path[], config?: Config) {
 		if (port) this.port = port;
 		if (paths) this.paths = paths;
+		if (config) this.config = config;
 	}
 
 	public get Paths(): Path[] {
