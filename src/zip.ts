@@ -25,3 +25,20 @@ export function filesCompress(out: string, files: string[]): Promise<any> {
 		}
 	});
 }
+
+type files = { name: string, data: string }[];
+
+export function filesDecompress(input: string): files {
+	let files: files = [];
+
+	let data = decompress(readFileSync(input, "utf-8"));
+
+	data.split("\n\n").forEach(file => {
+		let [name, data] = file.split("\n");
+		files.push({name, data});
+	});
+
+	return files.slice(1);
+}
+
+export default {compress, decompress, filesCompress, filesDecompress};
