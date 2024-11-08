@@ -15,7 +15,7 @@ export function filesCompress(out: string, files: string[]): Promise<any> {
 			let file: string[] = [];
 			files.forEach(path => {
 				let data = decompress(readFileSync(path, "utf-8"));
-				file.push(`\n\n${data}`);
+				file.push(`\n\n${path}\n${data}`);
 			});
 
 			let data: string = compress(file.join());
