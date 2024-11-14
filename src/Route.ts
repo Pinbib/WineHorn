@@ -4,7 +4,7 @@ import Validator, {Schema} from "./Validator.js";
 export type RequestTypes = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD" | "CONNECT" | "TRACE";
 export type RequestTypesLowerCase = Lowercase<RequestTypes>;
 
-export interface PathProto {
+export interface RouteProto {
 	method: RequestTypes;
 	path: string;
 	handler: RequestHandler;
@@ -12,7 +12,7 @@ export interface PathProto {
 }
 
 // ?x? implement !
-class Path implements PathProto {
+class Route implements RouteProto {
 	method: RequestTypes;
 	path: string;
 	handler: RequestHandler;
@@ -25,8 +25,8 @@ class Path implements PathProto {
 		this.validator = validator;
 	}
 
-	public static transform(path: PathProto): Path {
-		return new Path(path.method, path.path, path.handler, path.validator);
+	public static transform(route: RouteProto): Route {
+		return new Route(route.method, route.path, route.handler, route.validator);
 	}
 
 	public isValid(query: Record<string, unknown>): boolean | string {
@@ -35,9 +35,9 @@ class Path implements PathProto {
 		} else return true;
 	}
 
-	public alias(...path: string[]): Path[] {
-		return path.map(p => new Path(this.method, p, this.handler, this.validator));
+	public alias(...paths: string[]): Route[] {
+		return paths.map(p => new Route(this.method, p, this.handler, this.validator));
 	}
 }
 
-export default Path;
+export default Route;

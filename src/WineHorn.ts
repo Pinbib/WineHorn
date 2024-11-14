@@ -1,31 +1,34 @@
 import express from "express";
 import qp from "qp-color";
-import Path, {PathProto, RequestTypesLowerCase} from "./Path.js";
+import Route, {RouteProto, RequestTypesLowerCase} from "./Route";
 import Log from "./Log.js";
 import Config from "./Config.js";
+
+// todo: create plugin system
+// todo: create db system
 
 class WineHorn {
 	public port: number = 3000;
 	public config: Config = {};
-	private paths: Path[] = [];
+	private routes: Route[] = [];
 
-	constructor(port?: number, paths?: Path[], config?: Config) {
+	constructor(port?: number, routes?: Route[], config?: Config) {
 		if (port) this.port = port;
-		if (paths) this.paths = paths;
+		if (routes) this.routes = routes;
 		if (config) this.config = config;
 	}
 
-	public get Paths(): Path[] {
-		return this.paths;
+	public get Routes(): Route[] {
+		return this.routes;
 	}
 
-	public add(path: Path | PathProto): void {
-		if (this.paths.find(p => p.path === path.path)) throw new Error(`Path ${path.path} already exists.`);
-		else this.paths.push(Path.transform(path));
+	public add(route: Route | RouteProto): void {
+		if (this.routes.find(r => r.path === route.path)) throw new Error(`Route ${route.path} already exists.`);
+		else this.routes.push(Route.transform(route));
 	}
 
-	public adds(...paths: Path[] | PathProto[]): void {
-		paths.forEach(path => this.add(path));
+	public adds(...routes: Route[] | RouteProto[]): void {
+		routes.forEach(route => this.add(route));
 	}
 
 	public listen(): void {
@@ -37,8 +40,8 @@ class WineHorn {
 		// log
 		app.use(Log(this));
 
-		this.paths.forEach(path => {
-			app[path.method.toLowerCase() as RequestTypesLowerCase](path.path, path.handler); // todo: bind(?)
+		this.routes.forEach(route => {
+			app[route.method.toLowerCase() as RequestTypesLowerCase](route.path, route.handler); // todo: bind(?)
 		});
 
 		app.listen(port, () => {

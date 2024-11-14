@@ -5,7 +5,7 @@ import {Request, Response, NextFunction} from "express";
 import Lopster, {Extension} from "the-lopster";
 import qp from "qp-color";
 import WineHorn from "./WineHorn.js";
-import Path from "./Path.js";
+import Path from "./Route";
 import {compress} from "./zip.js";
 
 Lopster.use(new Extension(".log", (data: string): object => {
@@ -43,21 +43,31 @@ export default function Log(app: WineHorn): (req: Request, res: Response, next: 
 
 	let sl: Lopster = new Lopster(path.join("./log", "system.log"));
 
+	// if (!fs.existsSync("./backups")) {
+	// 	fs.mkdirSync("./backups");
+	// }
+
 	function colorize(request: string[]): string {
 		return qp.gb(request[0]) + qp.yi(request[1]) + qp.yb(request[2])
 	}
 
 	// middleware for logging requests
 	return (req, res, next) => {
+		// if (app.config.createBackupsAfter !== undefined) {
+		// 	if ((ol.data as Array<any>).length >= app.config.createBackupsAfter && (il.data as Array<any>).length >= app.config.createBackupsAfter) {
+		// 		// todo: create backup system
+		// 	}
+		// }
+
 		// placeholder of the send fictitious method
 		(() => {
 			const originalSend = res.send;
 
 			res.send = function (body) {
-				fs.writeFileSync(path.join("./log", "response", `${id}.zlog`), compress(body));
+				fs.writeFileSync(path.join("./log", "response", `${id}.zlog`), compress(body.replace(/\n/g, "{_n_}")));
 
 				let response: string[] = [`[${id}] (${new Date().toLocaleString()}) >>> ${req.method} ${res.statusCode} `, `${req.path} `, `${req.ip}`];
-				console.log(colorize(response));
+				console.log("{RESPONSE} " + colorize(response));
 
 				// recording the response in the log
 				ol.set((data: Object) => {
@@ -73,14 +83,14 @@ export default function Log(app: WineHorn): (req: Request, res: Response, next: 
 
 		let request: string[] = [`[${id}] (${new Date().toLocaleString()}) <<< ${req.method} `, `${req.path} `, `${req.ip}`];
 
-		console.log(colorize(request));
+		console.log("{REQUEST} " + colorize(request));
 
 		// recording the request in the log
 		il.set((data: Object) => {
 			(data as { data: string[] }).data.push(request.join(" "));
 		});
 
-		let path_: Path | undefined = app.Paths.find(p => p.path === req.path);
+		let path_: Path | undefined = app.Routes.find(p => p.path === req.path);
 
 		if (path_) {
 			// request validation
@@ -91,7 +101,7 @@ export default function Log(app: WineHorn): (req: Request, res: Response, next: 
 					res.status(400);
 
 					// validation error output
-					console.log(qp.rb(`[${id}] {Validator} >>> ${req.method} ${res.statusCode} ${req.path} ${req.ip} >>> ${valid}`));
+					console.log("{Validator} " + qp.rb(`[${id}] >>> ${req.method} ${res.statusCode} ${req.path} ${req.ip} >>> ${valid}`));
 
 					res.send(valid);
 				} else {
