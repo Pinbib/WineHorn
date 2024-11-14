@@ -9,10 +9,10 @@ export function decompress(input: string): string {
 	return gunzipSync(Buffer.from(input, "base64")).toString();
 }
 
-export function filesCompress(out: string, files: string[]): Promise<any> {
+export function filesCompress(out: string, files: string[], description: Record<string, string>): Promise<any> {
 	return new Promise((resolve, reject) => {
 		try {
-			let file: string[] = [];
+			let file: string[] = [`\n\nDescription:\n${JSON.stringify(description)}`];
 			files.forEach(path => {
 				let data = decompress(readFileSync(path, "utf-8"));
 				file.push(`\n\n${path}\n${data}`);
