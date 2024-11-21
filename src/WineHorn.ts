@@ -1,15 +1,18 @@
 import express from "express";
 import qp from "qp-color";
-import Route, {RouteProto, RequestTypesLowerCase} from "./Route";
+import Route, {RouteProto, RequestTypesLowerCase} from "./Route.js";
 import Log from "./Log.js";
 import Config from "./Config.js";
+import Plugin from "./Plugin.js";
 
-// todo: create plugin system
+// todo: create middleware system
 // todo: create db system
 
 class WineHorn {
 	public port: number = 3000;
 	public config: Config = {};
+	// plugins
+	public $: Record<string, any> = {};
 	private routes: Route[] = [];
 
 	constructor(port?: number, routes?: Route[], config?: Config) {
@@ -47,6 +50,27 @@ class WineHorn {
 		app.listen(port, () => {
 			console.log(qp.gb(`Server started on port ${port}\n>>> `), qp.ri(`http://localhost:${port}`));
 		});
+	}
+
+	public use<T>(plugin: Plugin<T>): void {
+		console.log(qp.gb("{WineHorn}"), qp.yi(`Installing plugin "${plugin.id}"`));
+		if (this.$[plugin.id] !== undefined) {
+			console.log(qp.gb("{WineHorn}"), qp.yi(`The "${plugin.id}" plugin has been overwritten.`));
+		}
+
+		// for accuracy
+		this.$[plugin.id] as T;
+
+		try {
+			this.$[plugin.id] = plugin.install();
+
+			// Object.defineProperty(this, `$$${plugin.id}`, {
+			// 	get: () => this.$[plugin.id],
+			// 	configurable: true
+			// });
+		} catch (err) {
+			console.log(qp.gb("{WineHorn}"), qp.ri(`Error installing plugin "${plugin.id}"`));
+		}
 	}
 }
 
