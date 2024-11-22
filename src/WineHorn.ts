@@ -5,7 +5,6 @@ import Log from "./Log.js";
 import Config from "./Config.js";
 import Plugin from "./Plugin.js";
 
-// todo: create middleware system
 // todo: create db system
 
 class WineHorn {
