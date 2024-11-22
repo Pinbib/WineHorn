@@ -1,4 +1,4 @@
-import express from "express";
+import express, {RequestHandler} from "express";
 import qp from "qp-color";
 import Route, {RouteProto, RequestTypesLowerCase} from "./Route.js";
 import Log from "./Log.js";
@@ -14,6 +14,7 @@ class WineHorn {
 	// plugins
 	public $: Record<string, any> = {};
 	private routes: Route[] = [];
+	private middlewares: RequestHandler[] = [];
 
 	constructor(port?: number, routes?: Route[], config?: Config) {
 		if (port) this.port = port;
@@ -43,6 +44,9 @@ class WineHorn {
 		// log
 		app.use(Log(this));
 
+		// middlewares
+		this.middlewares.forEach(middleware => app.use(middleware));
+
 		this.routes.forEach(route => {
 			app[route.method.toLowerCase() as RequestTypesLowerCase](route.path, route.handler); // todo: bind(?)
 		});
@@ -71,6 +75,10 @@ class WineHorn {
 		} catch (err) {
 			console.log(qp.gb("{WineHorn}"), qp.ri(`Error installing plugin "${plugin.id}"`));
 		}
+	}
+
+	public middleware(middleware: RequestHandler): void {
+		this.middlewares.push(middleware);
 	}
 }
 
