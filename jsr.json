@@ -1,6 +1,22 @@
 {
   "name": "@winehorn/winehorn",
   "version": "0.0.1",
-  "license": "MIT",
-  "exports": "./src/WineHorn.ts"
+  "license": "ISC",
+  "exports": {
+	".": "./src/WineHorn.ts",
+	"./Route": "./dist/Route.js",
+	"./Validator": "./dist/Validator.js",
+	"./Plugin": "./dist/Plugin.js"
+  },
+  "publish": {
+	"exclude": [
+	  ".idea",
+	  ".vscode",
+	  "node_modules",
+	  "dist",
+	  "test",
+	  "log",
+	  "templates"
+	]
+  }
 }
