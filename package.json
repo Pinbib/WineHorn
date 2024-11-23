@@ -1,6 +1,6 @@
 {
   "name": "winehorn",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Create fast test servers.",
   "main": "dist/WineHorn.js",
   "types": "dist/d/WineHorn.d.ts",
@@ -23,6 +23,10 @@
       "types": "./dist/d/Plugin.d.ts"
     }
   },
+  "bin": {
+    "init": "./bin/init.js",
+    "create": "./bin/init.js"
+  },
   "scripts": {},
   "author": "PinBib",
   "license": "ISC",
@@ -31,6 +35,7 @@
   },
   "dependencies": {
     "express": "^4.21.1",
+    "prompts": "^2.4.2",
     "qp-color": "^0.0.3",
     "the-lopster": "^0.1.9"
   }
