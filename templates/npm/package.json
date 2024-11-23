@@ -1,0 +1,17 @@
+{
+  "name": "@name",
+  "version": "0.0.1",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "ts": "tsc",
+    "dev": "nodemon -c ./nodemon.json",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "winehorn": "^@version"
+  }
+}

@@ -6,32 +6,32 @@
   "types": "dist/d/WineHorn.d.ts",
   "type": "module",
   "exports": {
-	".": {
-	  "import": "./dist/WineHorn.js",
-	  "types": "./dist/d/WineHorn.d.ts"
-	},
-	"./Route": {
-	  "import": "./dist/Route.js",
-	  "types": "./dist/d/Route.d.ts"
-	},
-	"./Validator": {
-	  "import": "./dist/Validator.js",
-	  "types": "./dist/d/Validator.d.ts"
-	},
-	"./Plugin": {
-	  "import": "./dist/Plugin.js",
-	  "types": "./dist/d/Plugin.d.ts"
-	}
+    ".": {
+      "import": "./dist/WineHorn.js",
+      "types": "./dist/d/WineHorn.d.ts"
+    },
+    "./Route": {
+      "import": "./dist/Route.js",
+      "types": "./dist/d/Route.d.ts"
+    },
+    "./Validator": {
+      "import": "./dist/Validator.js",
+      "types": "./dist/d/Validator.d.ts"
+    },
+    "./Plugin": {
+      "import": "./dist/Plugin.js",
+      "types": "./dist/d/Plugin.d.ts"
+    }
   },
   "scripts": {},
   "author": "PinBib",
   "license": "ISC",
   "devDependencies": {
-	"typescript": "^5.6.3"
+    "typescript": "^5.6.3"
   },
   "dependencies": {
-	"express": "^4.21.1",
-	"qp-color": "^0.0.3",
-	"the-lopster": "^0.1.8"
+    "express": "^4.21.1",
+    "qp-color": "^0.0.3",
+    "the-lopster": "^0.1.9"
   }
 }

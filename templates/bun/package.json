@@ -1,0 +1,13 @@
+{
+  "name": "@name",
+  "version": "0.0.1",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run dist/index.ts"
+  },
+  "dependencies": {
+    "winehorn": "^@version"
+  }
+}

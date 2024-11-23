@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "dev": "deno run --watch src/index.ts",
+    "start": "deno run src/index.ts"
+  },
+  "imports": {
+    "winehorn": "npm:winehorn@^@version"
+  }
+}
