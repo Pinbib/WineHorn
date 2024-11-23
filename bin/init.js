@@ -80,16 +80,15 @@ function copyDir(from, to, args) {
 
 				switch (runtime) {
 					case "node":
-						console.log(qp.yi(`npm install`));
-						console.log(qp.yi(`npm run dev`));
+						console.log(qp.yi(`\n\tnpm install`));
+						console.log(qp.yi(`\tnpm run dev`));
 						break;
 					case"deno":
-						console.log(qp.yi(`deno install`));
-						console.log(qp.yi(`deno task dev`));
+						console.log(qp.yi(`\n\tdeno task dev`));
 						break;
 					case"bun":
-						console.log(qp.yi(`npm install`));
-						console.log(qp.yi(`bun dev`));
+						console.log(qp.yi(`\n\tnpm install`));
+						console.log(qp.yi(`\tbun dev`));
 						break;
 				}
 			}

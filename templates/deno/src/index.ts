@@ -1,6 +1,6 @@
 import WineHorn from "winehorn";
 
-import EntryPoint from "./Routes/EntryPoint.js";
+import EntryPoint from "./Routes/EntryPoint.ts";
 
 let wh: WineHorn = new WineHorn();
 

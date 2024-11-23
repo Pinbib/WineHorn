@@ -1,6 +1,6 @@
 {
   "name": "winehorn",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Create fast test servers.",
   "main": "dist/WineHorn.js",
   "types": "dist/d/WineHorn.d.ts",
@@ -25,7 +25,7 @@
   },
   "bin": {
 	"init": "./bin/init.js",
-	"create-winehorn": "./bin/init.js"
+	"create": "./bin/init.js"
   },
   "scripts": {},
   "author": "PinBib",
