@@ -56,7 +56,7 @@ class WineHorn {
 	}
 
 	public use<T>(plugin: Plugin<T>): void {
-		console.log(qp.gb("{WineHorn}"), qp.yi(`Installing plugin "${plugin.id}"`));
+		console.log(qp.gb("{WineHorn}"), qp.yi(`Installing plugin "${plugin.name}"`));
 		if (this.$[plugin.id] !== undefined) {
 			console.log(qp.gb("{WineHorn}"), qp.yi(`The "${plugin.id}" plugin has been overwritten.`));
 		}
@@ -65,14 +65,14 @@ class WineHorn {
 		this.$[plugin.id] as T;
 
 		try {
-			this.$[plugin.id] = plugin.install();
+			this.$[plugin.id] = plugin.install(this);
 
 			// Object.defineProperty(this, `$$${plugin.id}`, {
 			// 	get: () => this.$[plugin.id],
 			// 	configurable: true
 			// });
 		} catch (err) {
-			console.log(qp.gb("{WineHorn}"), qp.ri(`Error installing plugin "${plugin.id}"`));
+			console.log(qp.gb("{WineHorn}"), qp.ri(`Error installing plugin "${plugin.name}"`));
 		}
 	}
 
