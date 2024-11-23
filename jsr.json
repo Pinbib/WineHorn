@@ -7,16 +7,5 @@
 	"./Route": "./dist/Route.js",
 	"./Validator": "./dist/Validator.js",
 	"./Plugin": "./dist/Plugin.js"
-  },
-  "publish": {
-	"exclude": [
-	  ".idea",
-	  ".vscode",
-	  "node_modules",
-	  "dist",
-	  "test",
-	  "log",
-	  "templates"
-	]
   }
 }

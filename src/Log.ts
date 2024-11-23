@@ -63,7 +63,7 @@ export default function Log(app: WineHorn): (req: Request, res: Response, next: 
 		(() => {
 			const originalSend = res.send;
 
-			res.send = function (body) {
+			res.send = function (body?: any) {
 				fs.writeFileSync(path.join("./log", "response", `${id}.zlog`), compress(body.replace(/\n/g, "{_n_}")));
 
 				let response: string[] = [`[${id}] (${new Date().toLocaleString()}) >>> ${req.method} ${res.statusCode} `, `${req.path} `, `${req.ip}`];
