@@ -30,6 +30,13 @@
   "bun-create": {
 	"start": "bun run ./bin/init.js"
   },
+  "files": [
+	"bin",
+	"dist",
+	"templates",
+	"tsconfig.json",
+	"jsr.json"
+  ],
   "scripts": {},
   "author": "PinBib",
   "license": "ISC",
