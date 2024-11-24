@@ -1,6 +1,6 @@
 {
   "name": "winehorn",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create fast test servers.",
   "main": "dist/WineHorn.js",
   "types": "dist/d/WineHorn.d.ts",
