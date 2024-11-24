@@ -119,6 +119,8 @@
   },
   "exclude": [
 	"templates",
-	"test"
+	"test",
+	"dist",
+	"node_modules"
   ]
 }
