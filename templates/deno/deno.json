@@ -5,6 +5,6 @@
   },
   "imports": {
 	"express": "npm:express@^4.21.1",
-	"winehorn": "jsr:@winehorn/winehorn@^@version_jsr"
+	"winehorn": "jsr:@winehorn/winehorn@^@jsrVersion"
   }
 }

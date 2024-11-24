@@ -8,7 +8,7 @@ import prompts from "prompts";
 import qp from "qp-color";
 
 let version = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, "..", "package.json"), "utf8")).version;
-let version_jsr = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, "..", "jsr.json"), "utf8")).version;
+let jsrVersion = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, "..", "jsr.json"), "utf8")).version;
 
 function copyDir(from, to, args) {
 	function replaceArgs(text) {
@@ -73,7 +73,7 @@ function copyDir(from, to, args) {
 			});
 
 			if (runtime) {
-				copyDir(path.join(import.meta.dirname, "..", "templates", runtime), "./", {name, version, version_jsr});
+				copyDir(path.join(import.meta.dirname, "..", "templates", runtime), "./", {name, version, jsrVersion});
 
 				console.log(qp.gb("Project created successfully!"));
 
