@@ -4,8 +4,8 @@
   "license": "ISC",
   "exports": {
 	".": "./src/WineHorn.ts",
-	"./Route": "./dist/Route.js",
-	"./Validator": "./dist/Validator.js",
-	"./Plugin": "./dist/Plugin.js"
+	"./Route": "./src/Route.ts",
+	"./Validator": "./src/Validator.ts",
+	"./Plugin": "./src/Plugin.ts"
   }
 }
