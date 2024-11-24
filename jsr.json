@@ -1,12 +1,13 @@
 {
   "name": "@winehorn/winehorn",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Create fast test servers.",
   "license": "ISC",
   "exports": {
 	".": "./src/WineHorn.ts",
 	"./Route": "./src/Route.ts",
 	"./Validator": "./src/Validator.ts",
-	"./Plugin": "./src/Plugin.ts"
+	"./Plugin": "./src/Plugin.ts",
+	"./Tilde": "./src/Tilde.ts"
   }
 }

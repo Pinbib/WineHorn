@@ -1,3 +1,8 @@
 export default interface Config {
-	createBackupsAfter?: number
+	createBackupsAfter?: number,
+
+	tilde?: {
+		src?: string;
+		preload?: boolean;
+	}
 }

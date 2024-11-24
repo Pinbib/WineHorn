@@ -1,6 +1,6 @@
 {
   "name": "winehorn",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Create fast test servers.",
   "main": "dist/WineHorn.js",
   "types": "dist/d/WineHorn.d.ts",
@@ -21,6 +21,10 @@
 	"./Plugin": {
 	  "import": "./dist/Plugin.js",
 	  "types": "./dist/d/Plugin.d.ts"
+	},
+	"./Tilde": {
+	  "import": "./dist/Tilde.js",
+	  "types": "./dist/d/Tilde.d.ts"
 	}
   },
   "bin": {
@@ -44,13 +48,13 @@
 	"templates/deno/src/index.ts",
 	"templates/deno/src/Routes",
 	"templates/deno/src/Routes/EntryPoint.ts",
-	"templates/npm",
-	"templates/npm/package.json",
-	"templates/npm/tsconfig.json",
-	"templates/npm/nodemon.json",
-	"templates/npm/src/index.ts",
-	"templates/npm/src/Routes",
-	"templates/npm/src/Routes/EntryPoint.ts",
+	"templates/node",
+	"templates/node/package.json",
+	"templates/node/tsconfig.json",
+	"templates/node/nodemon.json",
+	"templates/node/src/index.ts",
+	"templates/node/src/Routes",
+	"templates/node/src/Routes/EntryPoint.ts",
 	"tsconfig.json",
 	"jsr.json"
   ],

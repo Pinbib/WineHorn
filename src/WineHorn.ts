@@ -5,13 +5,12 @@ import Log from "./Log.js";
 import Config from "./Config.js";
 import Plugin from "./Plugin.js";
 
-// todo: create db system
-
 class WineHorn {
 	public port: number = 3000;
 	public config: Config = {};
 	// plugins
 	public $: Record<string, any> = {};
+
 	private routes: Route[] = [];
 	private middlewares: RequestHandler[] = [];
 
@@ -47,7 +46,7 @@ class WineHorn {
 		this.middlewares.forEach(middleware => app.use(middleware));
 
 		this.routes.forEach(route => {
-			app[route.method.toLowerCase() as RequestTypesLowerCase](route.path, route.handler); // todo: bind(?)
+			app[route.method.toLowerCase() as RequestTypesLowerCase](route.path, route.handler.bind(this)); // todo: bind(?)
 		});
 
 		app.listen(port, () => {
@@ -73,6 +72,7 @@ class WineHorn {
 			// });
 		} catch (err) {
 			console.log(qp.gb("{WineHorn}"), qp.ri(`Error installing plugin "${plugin.name}"`));
+			console.log(err)
 		}
 	}
 

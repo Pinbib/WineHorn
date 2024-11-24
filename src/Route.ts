@@ -1,5 +1,6 @@
 import {RequestHandler} from "express";
 import Validator, {Schema} from "./Validator.js";
+import WineHorn from "./WineHorn.js";
 
 export type RequestTypes = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD" | "CONNECT" | "TRACE";
 export type RequestTypesLowerCase = Lowercase<RequestTypes>;
@@ -9,6 +10,7 @@ export interface RouteProto {
 	path: string;
 	handler: RequestHandler;
 	validator?: Schema;
+	wh?: WineHorn;
 }
 
 // ?x? implement !
@@ -17,6 +19,7 @@ class Route implements RouteProto {
 	path: string;
 	handler: RequestHandler;
 	validator?: Schema;
+	wh?: WineHorn;
 
 	constructor(method: RequestTypes, path: string, handler: RequestHandler, validator?: Schema) {
 		this.method = method;
