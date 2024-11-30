@@ -9,3 +9,6 @@ log
 test
 
 .npmignore
+
+.vitepress/.vitepress/dist
+.vitepress/.vitepress/cache

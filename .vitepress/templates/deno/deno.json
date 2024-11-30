@@ -1,0 +1,10 @@
+{
+  "tasks": {
+	"dev": "deno run --watch --allow-read --allow-write --allow-env --allow-net src/index.ts --unstable-sloppy-imports",
+	"start": "deno run --allow-read --allow-write --allow-env --allow-net src/index.ts --unstable-sloppy-imports"
+  },
+  "imports": {
+	"express": "npm:express@^4.21.1",
+	"winehorn": "jsr:@winehorn/winehorn@^0.1.0"
+  }
+}
